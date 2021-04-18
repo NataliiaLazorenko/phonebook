@@ -1,0 +1,25 @@
+@import '../../styles/shared.scss';
+
+.authForm {
+  @extend %form;
+  margin: 0 auto;
+
+  .inputField {
+    margin-bottom: 25px;
+  }
+}
+
+.authFormTitle {
+  color: $pink-accent;
+}
+
+.lockIcon {
+  padding: 5px;
+  color: $white;
+  background-color: $pink-accent;
+  border-radius: 50%;
+}
+
+.formLink {
+  @extend %link;
+}

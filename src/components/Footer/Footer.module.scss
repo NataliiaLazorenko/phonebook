@@ -1,0 +1,43 @@
+@import '../../styles/shared.scss';
+
+.footer {
+  padding-top: 30px;
+  padding-bottom: 30px;
+}
+
+.developerContacts {
+  display: flex;
+  align-items: baseline;
+  justify-content: center;
+}
+
+.text {
+  margin-right: 20px;
+}
+
+.developerName {
+  font-weight: 700;
+}
+
+.developerLink {
+  @extend %link;
+
+  &:focus,
+  &:hover {
+    color: $pink-accent;
+  }
+
+  &:not(:last-child) {
+    margin-right: 20px;
+  }
+}
+
+.icon {
+  width: 20px;
+  height: 20px;
+  fill: currentColor;
+}
+
+.footerLogo {
+  margin-bottom: 20px;
+}

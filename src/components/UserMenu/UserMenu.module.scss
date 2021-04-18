@@ -1,0 +1,34 @@
+@import '../../styles/shared.scss';
+
+.userMenuContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.userEmail {
+  margin-right: 20px;
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  border: none;
+  color: currentColor;
+  background-color: $white;
+  cursor: pointer;
+
+  &:focus,
+  &:hover {
+    color: $green;
+  }
+}
+
+.logoutIcon {
+  width: 24px;
+  height: 24px;
+
+  fill: currentColor;
+}

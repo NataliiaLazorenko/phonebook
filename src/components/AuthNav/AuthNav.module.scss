@@ -1,0 +1,23 @@
+@import '../../styles/shared.scss';
+
+.AuthNavList {
+  @extend %list;
+  display: flex;
+}
+
+.listItem {
+  &:not(:last-child) {
+    margin-right: 20px;
+  }
+}
+
+.listItemLink {
+  @extend %link;
+
+  padding-top: 30px;
+  padding-bottom: 30px;
+}
+
+.activeLink {
+  color: $pink-accent;
+}

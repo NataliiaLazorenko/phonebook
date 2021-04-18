@@ -1,0 +1,21 @@
+@import '../../styles/shared.scss';
+
+.filterLabel {
+  @extend %label;
+
+  max-width: 800px;
+  margin-bottom: 30px;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: left;
+}
+
+.filterInput {
+  @extend %inputField;
+
+  padding: 10px;
+
+  @media screen and (min-width: 1200px) {
+    display: block;
+  }
+}
