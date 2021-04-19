@@ -62,10 +62,10 @@ export default function AuthForm({
     event => {
       event.preventDefault();
 
-      handleAuthenticate({ email, password });
+      handleAuthenticate({ name, email, password });
       reset();
     },
-    [handleAuthenticate, email, password],
+    [handleAuthenticate, name, email, password],
   );
 
   const reset = () => {
