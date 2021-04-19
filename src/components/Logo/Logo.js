@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styles from './Logo.module.scss';
 
-const Logo = ({ classes }) => {
+export default function Logo({ classes }) {
   const logoClasses = [styles.logo];
 
   if (classes) {
@@ -10,7 +10,7 @@ const Logo = ({ classes }) => {
   }
 
   return <p className={logoClasses.join(' ')}>Phonebook</p>;
-};
+}
 
 Logo.propTypes = {
   classes: PropTypes.string,
@@ -19,5 +19,3 @@ Logo.propTypes = {
 Logo.defaultProps = {
   classes: '',
 };
-
-export default Logo;

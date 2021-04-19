@@ -1,104 +1,92 @@
-import React, { Component } from 'react';
-import PropTypes from 'prop-types';
+import React, { useState, useCallback } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { contactsSelectors, contactsOperations } from '../../redux/contacts';
 import styles from './ContactForm.module.scss';
 
-class ContactForm extends Component {
-  state = {
-    name: '',
-    number: '',
-  };
+export default function ContactForm() {
+  const [name, setName] = useState('');
+  const [number, setNumber] = useState('');
+  const items = useSelector(contactsSelectors.getAllContacts);
 
-  handleChange = ({ target }) => {
-    const { name, value } = target;
+  const dispatch = useDispatch();
 
-    this.setState({
-      [name]: value,
-    });
-  };
+  const handleChange = useCallback(event => {
+    const { name, value } = event.target;
 
-  handleSubmit = event => {
-    event.preventDefault();
+    switch (name) {
+      case 'name':
+        setName(value);
+        break;
 
-    const { items, onFormSubmit } = this.props;
-    const { name } = this.state;
+      case 'number':
+        setNumber(value);
+        break;
 
-    if (name === '') {
-      return;
+      default:
+        throw new Error();
     }
+  }, []);
 
-    const isInContacts = items.find(
-      item => item.name.toLowerCase() === name.toLowerCase(),
-    );
+  const handleSubmit = useCallback(
+    event => {
+      event.preventDefault();
 
-    if (isInContacts) {
-      alert(`${name} is already in contacts`);
-    } else {
-      onFormSubmit(this.state);
-    }
+      if (name === '') {
+        return;
+      }
 
-    this.reset();
+      const isInContacts = items.find(
+        item => item.name.toLowerCase() === name.toLowerCase(),
+      );
+
+      if (isInContacts) {
+        alert(`${name} is already in contacts`);
+      } else {
+        dispatch(contactsOperations.addContact({ name, number }));
+      }
+
+      reset();
+    },
+    [dispatch, items, name, number],
+  );
+
+  const reset = () => {
+    setName('');
+    setNumber('');
   };
 
-  reset = () => {
-    this.setState({
-      name: '',
-      number: '',
-    });
-  };
-
-  render() {
-    const { name, number } = this.state;
-
-    return (
-      <form onSubmit={this.handleSubmit} className={styles.addContactForm}>
-        <h2 className={styles.contactFormTitle}>New contact</h2>
-        <label className={styles.contactFormLabel}>
-          Name
-          <input
-            type="text"
-            placeholder="Enter name"
-            name="name"
-            value={name}
-            onChange={this.handleChange}
-            className={styles.contactFormInput}
-          />
-        </label>
-        <label className={styles.contactFormLabel}>
-          Phone Number
-          <input
-            type="tel"
-            placeholder="Enter phone number"
-            name="number"
-            value={number}
-            onChange={this.handleChange}
-            className={styles.contactFormInput}
-          />
-        </label>
-        <button
-          type="submit"
-          className={`button ${styles.formBtn}`}
-          disabled={name === '' || number === '' ? true : false}
-        >
-          Add contact
-        </button>
-      </form>
-    );
-  }
+  return (
+    <form onSubmit={handleSubmit} className={styles.addContactForm}>
+      <h2 className={styles.contactFormTitle}>New contact</h2>
+      <label className={styles.contactFormLabel}>
+        Name
+        <input
+          type="text"
+          placeholder="Enter name"
+          name="name"
+          value={name}
+          onChange={handleChange}
+          className={styles.contactFormInput}
+        />
+      </label>
+      <label className={styles.contactFormLabel}>
+        Phone Number
+        <input
+          type="tel"
+          placeholder="Enter phone number"
+          name="number"
+          value={number}
+          onChange={handleChange}
+          className={styles.contactFormInput}
+        />
+      </label>
+      <button
+        type="submit"
+        className={`button ${styles.formBtn}`}
+        disabled={name === '' || number === '' ? true : false}
+      >
+        Add contact
+      </button>
+    </form>
+  );
 }
-
-ContactForm.propTypes = {
-  onFormSubmit: PropTypes.func.isRequired,
-  items: PropTypes.arrayOf(
-    PropTypes.shape({
-      id: PropTypes.string,
-      name: PropTypes.string,
-      number: PropTypes.string,
-    }),
-  ),
-};
-
-ContactForm.defaultProps = {
-  items: [],
-};
-
-export default ContactForm;

@@ -1,6 +1,7 @@
-import React, { Component, Suspense, lazy } from 'react';
-import PropTypes from 'prop-types';
+import React, { useEffect, Suspense, lazy } from 'react';
+import { useDispatch } from 'react-redux';
 import { Switch, Redirect } from 'react-router-dom';
+import { authOperations } from './redux/auth';
 import AppBar from './components/AppBar';
 import Spinner from './components/Spinner';
 import PrivateRoute from './components/PrivateRoute';
@@ -24,48 +25,48 @@ const ContactsPage = lazy(() =>
   import('./pages/ContactsPage' /* webpackChunkName: 'contacts-page' */),
 );
 
-class App extends Component {
-  componentDidMount() {
-    this.props.onGetCurrentUser();
-  }
+export default function App() {
+  const dispatch = useDispatch();
 
-  render() {
-    return (
-      <>
-        <AppBar />
+  useEffect(() => {
+    dispatch(authOperations.getCurrentUser());
+  }, [dispatch]);
 
-        <Suspense fallback={<Spinner />}>
-          <Switch>
-            <PublicRoute exact path={routes.home} component={HomePage} />
-            <PublicRoute
-              path={routes.register}
-              restricted
-              redirectTo={routes.contacts}
-              component={RegisterPage}
-            />
-            <PublicRoute
-              path={routes.login}
-              restricted
-              redirectTo={routes.contacts}
-              component={LoginPage}
-            />
-            <PrivateRoute
-              path={routes.contacts}
-              redirectTo={routes.login}
-              component={ContactsPage}
-            />
-            <Redirect to={routes.home} />
-          </Switch>
-        </Suspense>
+  return (
+    <>
+      <AppBar />
 
-        <Footer />
-      </>
-    );
-  }
+      <Suspense fallback={<Spinner />}>
+        <Switch>
+          <PublicRoute exact path={routes.home}>
+            <HomePage />
+          </PublicRoute>
+
+          <PublicRoute
+            path={routes.register}
+            restricted
+            redirectTo={routes.contacts}
+          >
+            <RegisterPage />
+          </PublicRoute>
+
+          <PublicRoute
+            path={routes.login}
+            restricted
+            redirectTo={routes.contacts}
+          >
+            <LoginPage />
+          </PublicRoute>
+
+          <PrivateRoute path={routes.contacts} redirectTo={routes.login}>
+            <ContactsPage />
+          </PrivateRoute>
+
+          <Redirect to={routes.home} />
+        </Switch>
+      </Suspense>
+
+      <Footer />
+    </>
+  );
 }
-
-App.propTypes = {
-  onGetCurrentUser: PropTypes.func.isRequired,
-};
-
-export default App;

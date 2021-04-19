@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styles from './Container.module.scss';
 
-const Container = ({ children, classes }) => {
+export default function Container({ children, classes }) {
   const containerClasses = [styles.container];
 
   if (classes) {
@@ -10,7 +10,7 @@ const Container = ({ children, classes }) => {
   }
 
   return <div className={containerClasses.join(' ')}>{children}</div>;
-};
+}
 
 Container.propTypes = {
   children: PropTypes.node,
@@ -20,5 +20,3 @@ Container.propTypes = {
 Container.defaultProps = {
   classes: '',
 };
-
-export default Container;

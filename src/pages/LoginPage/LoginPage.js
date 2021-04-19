@@ -1,25 +1,27 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import React, { useCallback } from 'react';
+import { useDispatch } from 'react-redux';
+import { authOperations } from '../../redux/auth';
 import Container from '../../components/Container';
 import AuthForm from '../../components/AuthForm';
 import routes from '../../routes';
 
-const LoginPage = ({ onLogin }) => (
-  <section className="section">
-    <Container>
-      <AuthForm
-        shouldRenderName={false}
-        text="Log in"
-        redirectLinkText="Don't have an account? Sign up"
-        redirectPath={routes.register}
-        handleAuthenticate={onLogin}
-      />
-    </Container>
-  </section>
-);
+export default function LoginPage() {
+  const dispatch = useDispatch();
+  const onLogin = useCallback(user => dispatch(authOperations.login(user)), [
+    dispatch,
+  ]);
 
-LoginPage.propTypes = {
-  onLogin: PropTypes.func.isRequired,
-};
-
-export default LoginPage;
+  return (
+    <section className="section">
+      <Container>
+        <AuthForm
+          shouldRenderName={false}
+          text="Log in"
+          redirectLinkText="Don't have an account? Sign up"
+          redirectPath={routes.register}
+          handleAuthenticate={onLogin}
+        />
+      </Container>
+    </section>
+  );
+}

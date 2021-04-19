@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { useState, useCallback } from 'react';
 import { Link } from 'react-router-dom';
 import {
   TextField,
@@ -25,124 +25,129 @@ const ColorButton = withStyles(_ => ({
   },
 }))(Button);
 
-class AuthForm extends Component {
-  state = {
-    name: '',
-    email: '',
-    password: '',
-    showPassword: false,
-  };
+export default function AuthForm({
+  shouldRenderName,
+  text,
+  redirectLinkText,
+  redirectPath,
+  handleAuthenticate,
+}) {
+  const [name, setName] = useState('');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [showPassword, setShowPassword] = useState(false);
 
-  handleChange = event => {
+  const handleChange = useCallback(event => {
     const { name, value } = event.target;
-    this.setState({ [name]: value });
+
+    switch (name) {
+      case 'name':
+        setName(value);
+        break;
+
+      case 'email':
+        setEmail(value);
+        break;
+
+      case 'password':
+        setPassword(value);
+        break;
+
+      default:
+        throw new Error();
+    }
+  }, []);
+
+  const handleSubmit = useCallback(
+    event => {
+      event.preventDefault();
+
+      handleAuthenticate({ email, password });
+      reset();
+    },
+    [handleAuthenticate, email, password],
+  );
+
+  const reset = () => {
+    setName('');
+    setEmail('');
+    setPassword('');
+    setShowPassword(false);
   };
 
-  handleSubmit = event => {
-    event.preventDefault();
+  const handleShowPassword = useCallback(() => {
+    setShowPassword(prevShowPassword => !prevShowPassword);
+  }, []);
 
-    const { handleAuthenticate } = this.props;
-    handleAuthenticate(this.state);
-
-    this.reset();
-  };
-
-  reset = () => {
-    this.setState({
-      name: '',
-      email: '',
-      password: '',
-      showPassword: false,
-    });
-  };
-
-  handleShowPassword = () => {
-    this.setState(prevState => ({
-      showPassword: !prevState.showPassword,
-    }));
-  };
-
-  render() {
-    const { name, email, password, showPassword } = this.state;
-    const {
-      shouldRenderName,
-      text,
-      redirectLinkText,
-      redirectPath,
-    } = this.props;
-
-    return (
-      <form onSubmit={this.handleSubmit} className={styles.authForm}>
-        <HttpsIcon fontSize="large" className={styles.lockIcon} />
-        <h2 className={styles.authFormTitle}>{text}</h2>
-        {shouldRenderName && (
-          <TextField
-            id="name"
-            type="name"
-            name="name"
-            value={name}
-            label="Name"
-            variant="outlined"
-            required
-            fullWidth
-            autoFocus={shouldRenderName ? true : false}
-            className={styles.inputField}
-            onChange={this.handleChange}
-          />
-        )}
+  return (
+    <form onSubmit={handleSubmit} className={styles.authForm}>
+      <HttpsIcon fontSize="large" className={styles.lockIcon} />
+      <h2 className={styles.authFormTitle}>{text}</h2>
+      {shouldRenderName && (
         <TextField
-          id="email"
-          type="email"
-          name="email"
-          value={email}
-          label="Email adress"
+          id="name"
+          type="name"
+          name="name"
+          value={name}
+          label="Name"
           variant="outlined"
           required
           fullWidth
-          autoFocus={shouldRenderName ? false : true}
+          autoFocus={shouldRenderName ? true : false}
           className={styles.inputField}
-          onChange={this.handleChange}
+          onChange={handleChange}
         />
-        <TextField
-          id="password"
-          type={showPassword ? 'text' : 'password'}
-          name="password"
-          value={password}
-          label="Password"
-          variant="outlined"
-          required
-          fullWidth
-          className={styles.inputField}
-          onChange={this.handleChange}
-          InputProps={{
-            endAdornment: (
-              <InputAdornment position="end">
-                <IconButton
-                  aria-label="toggle password visibility"
-                  onClick={this.handleShowPassword}
-                  edge="end"
-                >
-                  {showPassword ? <Visibility /> : <VisibilityOff />}
-                </IconButton>
-              </InputAdornment>
-            ),
-          }}
-        />
-        <ColorButton
-          variant="contained"
-          color="primary"
-          type="submit"
-          fullWidth
-          size="large"
-        >
-          {text}
-        </ColorButton>
-        <Link to={redirectPath} className={styles.formLink}>
-          {redirectLinkText}
-        </Link>
-      </form>
-    );
-  }
+      )}
+      <TextField
+        id="email"
+        type="email"
+        name="email"
+        value={email}
+        label="Email adress"
+        variant="outlined"
+        required
+        fullWidth
+        autoFocus={shouldRenderName ? false : true}
+        className={styles.inputField}
+        onChange={handleChange}
+      />
+      <TextField
+        id="password"
+        type={showPassword ? 'text' : 'password'}
+        name="password"
+        value={password}
+        label="Password"
+        variant="outlined"
+        required
+        fullWidth
+        className={styles.inputField}
+        onChange={handleChange}
+        InputProps={{
+          endAdornment: (
+            <InputAdornment position="end">
+              <IconButton
+                aria-label="toggle password visibility"
+                onClick={handleShowPassword}
+                edge="end"
+              >
+                {showPassword ? <Visibility /> : <VisibilityOff />}
+              </IconButton>
+            </InputAdornment>
+          ),
+        }}
+      />
+      <ColorButton
+        variant="contained"
+        color="primary"
+        type="submit"
+        fullWidth
+        size="large"
+      >
+        {text}
+      </ColorButton>
+      <Link to={redirectPath} className={styles.formLink}>
+        {redirectLinkText}
+      </Link>
+    </form>
+  );
 }
-
-export default AuthForm;

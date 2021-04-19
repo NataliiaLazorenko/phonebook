@@ -1,28 +1,27 @@
 import React from 'react';
-import PropTypes from 'prop-types';
+import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
+import { authSelectors } from '../../redux/auth';
 import Container from '../../components/Container';
 import routes from '../../routes';
 import styles from './HomePage.module.scss';
 
-const HomePage = ({ isAuthenticated }) => (
-  <section className={styles.hero}>
-    <Container>
-      <h1 className={styles.title}>Welcome to Phonebook</h1>
-      {!isAuthenticated && (
-        <div className={styles.textContainer}>
-          <p className={styles.text}>To use it, please</p>
-          <Link to={routes.login} className={styles.link}>
-            log in
-          </Link>
-        </div>
-      )}
-    </Container>
-  </section>
-);
+export default function HomePage() {
+  const isLoggedIn = useSelector(authSelectors.getIsAuthenticated);
 
-HomePage.propTypes = {
-  isAuthenticated: PropTypes.bool.isRequired,
-};
-
-export default HomePage;
+  return (
+    <section className={styles.hero}>
+      <Container>
+        <h1 className={styles.title}>Welcome to Phonebook</h1>
+        {!isLoggedIn && (
+          <div className={styles.textContainer}>
+            <p className={styles.text}>To use it, please</p>
+            <Link to={routes.login} className={styles.link}>
+              log in
+            </Link>
+          </div>
+        )}
+      </Container>
+    </section>
+  );
+}

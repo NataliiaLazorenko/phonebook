@@ -1,1 +1,1 @@
-export { default } from './Navigation.container.js';
+export { default } from './Navigation';
