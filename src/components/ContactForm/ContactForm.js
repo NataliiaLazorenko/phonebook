@@ -70,7 +70,7 @@ export default function ContactForm() {
         />
       </label>
       <label className={styles.contactFormLabel}>
-        Phone Number
+        Phone number
         <input
           type="tel"
           placeholder="Enter phone number"
@@ -82,7 +82,7 @@ export default function ContactForm() {
       </label>
       <button
         type="submit"
-        className={`button ${styles.formBtn}`}
+        className={`button ${styles.contactFormBtn}`}
         disabled={name === '' || number === '' ? true : false}
       >
         Add contact

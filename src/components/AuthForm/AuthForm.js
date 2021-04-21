@@ -9,21 +9,24 @@ import {
 import { Visibility, VisibilityOff } from '@material-ui/icons';
 import HttpsIcon from '@material-ui/icons/Https';
 import { withStyles } from '@material-ui/core/styles';
-import { green } from '@material-ui/core/colors';
 import styles from './AuthForm.module.scss';
 
-const ColorButton = withStyles(_ => ({
+const ValidationTextField = withStyles({
   root: {
-    backgroundColor: green[800],
-    paddingTop: '15px',
-    paddingBottom: '15px',
-    marginBottom: '25px',
-    fontWeight: 700,
-    '&:hover': {
-      backgroundColor: green[700],
+    '& input:valid + fieldset': {
+      borderColor: '#2e7d32',
+      borderWidth: 2,
+    },
+    '& input:invalid + fieldset': {
+      borderColor: '#c2185b',
+      borderWidth: 2,
+    },
+    '& input:valid:focus + fieldset': {
+      borderLeftWidth: 6,
+      padding: '4px !important', // override inline-style
     },
   },
-}))(Button);
+})(TextField);
 
 export default function AuthForm({
   shouldRenderName,
@@ -80,12 +83,15 @@ export default function AuthForm({
   }, []);
 
   return (
-    <form onSubmit={handleSubmit} className={styles.authForm}>
-      <HttpsIcon fontSize="large" className={styles.lockIcon} />
+    <form onSubmit={handleSubmit} className={styles.authForm} noValidate>
+      <HttpsIcon className={styles.lockIcon} />
       <h2 className={styles.authFormTitle}>{text}</h2>
       {shouldRenderName && (
-        <TextField
-          id="name"
+        <ValidationTextField
+          onChange={handleChange}
+          className={styles.inputField}
+          autoFocus={shouldRenderName ? true : false}
+          id="validation-outlined-input"
           type="name"
           name="name"
           value={name}
@@ -93,13 +99,13 @@ export default function AuthForm({
           variant="outlined"
           required
           fullWidth
-          autoFocus={shouldRenderName ? true : false}
-          className={styles.inputField}
-          onChange={handleChange}
         />
       )}
-      <TextField
-        id="email"
+      <ValidationTextField
+        onChange={handleChange}
+        className={styles.inputField}
+        autoFocus={shouldRenderName ? false : true}
+        id="validation-outlined-input"
         type="email"
         name="email"
         value={email}
@@ -107,12 +113,12 @@ export default function AuthForm({
         variant="outlined"
         required
         fullWidth
-        autoFocus={shouldRenderName ? false : true}
-        className={styles.inputField}
-        onChange={handleChange}
       />
-      <TextField
-        id="password"
+
+      <ValidationTextField
+        onChange={handleChange}
+        className={styles.inputField}
+        id="validation-outlined-input"
         type={showPassword ? 'text' : 'password'}
         name="password"
         value={password}
@@ -120,14 +126,13 @@ export default function AuthForm({
         variant="outlined"
         required
         fullWidth
-        className={styles.inputField}
-        onChange={handleChange}
         InputProps={{
           endAdornment: (
             <InputAdornment position="end">
               <IconButton
-                aria-label="toggle password visibility"
                 onClick={handleShowPassword}
+                className={styles.passwordIcon}
+                aria-label="toggle password visibility"
                 edge="end"
               >
                 {showPassword ? <Visibility /> : <VisibilityOff />}
@@ -136,7 +141,8 @@ export default function AuthForm({
           ),
         }}
       />
-      <ColorButton
+      <Button
+        className={styles.authFormBtn}
         variant="contained"
         color="primary"
         type="submit"
@@ -144,7 +150,7 @@ export default function AuthForm({
         size="large"
       >
         {text}
-      </ColorButton>
+      </Button>
       <Link to={redirectPath} className={styles.formLink}>
         {redirectLinkText}
       </Link>

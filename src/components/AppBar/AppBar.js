@@ -14,7 +14,7 @@ export default function AppBar() {
   return (
     <header>
       <Container classes={styles.headerContainer}>
-        <Logo />
+        <Logo showLogoText={false} />
         <Navigation />
         {isLoggedIn ? <UserMenu /> : <AuthNav />}
       </Container>

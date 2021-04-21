@@ -1,18 +1,24 @@
 @import '../../styles/shared.scss';
 
-.logo {
-  font-weight: 700;
+.logoWrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
   color: $green;
+}
 
-  @media screen and (min-width: 480px) {
-    font-size: 20px;
-  }
+.logoIcon {
+  @extend %icon;
 
-  @media screen and (min-width: 768px) {
-    font-size: 30px;
-  }
+  margin-right: 4px;
+}
 
-  @media screen and (min-width: 1200px) {
-    font-size: 36px;
-  }
+.logoText {
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.accent {
+  text-transform: initial;
 }

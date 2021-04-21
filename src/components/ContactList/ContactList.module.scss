@@ -3,7 +3,7 @@
 .contactsList {
   @extend %list;
 
-  @media screen and (min-width: 1200px) {
+  @media screen and (min-width: $desktop) {
     display: flex;
     flex-wrap: wrap;
   }
@@ -12,19 +12,25 @@
 .listItem {
   display: flex;
   justify-content: space-between;
-  align-items: center;
+  align-items: baseline;
+
+  @media screen and (min-width: $desktop) {
+    width: calc((100% - 60px) / 2);
+  }
 }
 
 .listItem:not(:last-child) {
   margin-bottom: 10px;
 }
 
-@media screen and (min-width: 1200px) {
-  .listItem {
-    width: calc((100% - 60px) / 2);
-  }
-
-  .listItem:nth-child(odd) {
+.listItem:nth-child(odd) {
+  @media screen and (min-width: $desktop) {
     margin-right: 60px;
+  }
+}
+
+.listItem:nth-last-child(-n + 2) {
+  @media screen and (min-width: $desktop) {
+    margin-bottom: 0px;
   }
 }

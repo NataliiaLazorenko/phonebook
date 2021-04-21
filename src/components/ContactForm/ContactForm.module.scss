@@ -12,37 +12,43 @@
 }
 
 .contactFormTitle {
+  @extend %formTitle;
+
   text-align: center;
-  margin-bottom: 10px;
-  color: $pink-accent;
 }
 
 .contactFormLabel {
   @extend %label;
+
+  font-size: 16px;
 }
 
 .contactFormInput {
   @extend %inputField;
 
-  padding: 18px 14px;
+  padding: 17px 14px;
 }
 
-.formBtn {
-  padding: 15px 22px;
-  font-weight: 700;
-  text-transform: uppercase;
+.contactFormBtn {
+  @extend %formBtn;
 
-  color: $white;
-  background-color: $green;
+  padding: 12px;
 
-  &:focus,
-  &:hover {
-    background-color: #1d774d;
+  @media screen and (min-width: $mobile) {
+    padding: 13px;
+  }
+
+  @media screen and (min-width: $tablet) {
+    padding: 16px;
+  }
+
+  @media screen and (min-width: $desktop) {
+    padding: 17px;
   }
 }
 
-.formBtn[disabled] {
-  border: 1px solid rgba(41, 158, 103, 0.3);
+.contactFormBtn[disabled] {
+  border: 1px solid $light-green;
 
   background-color: $light-green;
 

@@ -4,20 +4,45 @@
   @extend %form;
   margin: 0 auto;
 
+  .lockIcon {
+    @extend %icon;
+
+    padding: 3px;
+
+    color: $white;
+    background-color: $pink-accent;
+    border-radius: 50%;
+  }
+
   .inputField {
-    margin-bottom: 25px;
+    margin-bottom: 10px;
+
+    @media screen and (min-width: $tablet) {
+      margin-bottom: 20px;
+    }
+  }
+
+  .passwordIcon svg {
+    @extend %icon;
+  }
+
+  .authFormBtn {
+    @extend %formBtn;
+
+    padding-top: 10px;
+    padding-bottom: 10px;
+    margin-bottom: 10px;
+
+    @media screen and (min-width: $tablet) {
+      padding-top: 12px;
+      padding-bottom: 12px;
+      margin-bottom: 30px;
+    }
   }
 }
 
 .authFormTitle {
-  color: $pink-accent;
-}
-
-.lockIcon {
-  padding: 5px;
-  color: $white;
-  background-color: $pink-accent;
-  border-radius: 50%;
+  @extend %formTitle;
 }
 
 .formLink {

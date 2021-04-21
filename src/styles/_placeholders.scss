@@ -1,3 +1,5 @@
+@import './variables.scss';
+
 %list {
   padding: 0;
   margin: 0;
@@ -16,15 +18,15 @@
     color: $pink-accent;
   }
 
-  @media screen and (min-width: 480px) {
+  @media screen and (min-width: $mobile) {
     font-size: 16px;
   }
 
-  @media screen and (min-width: 768px) {
+  @media screen and (min-width: $tablet) {
     font-size: 20px;
   }
 
-  @media screen and (min-width: 1200px) {
+  @media screen and (min-width: $desktop) {
     font-size: 24px;
   }
 }
@@ -48,7 +50,7 @@
 }
 
 %form {
-  padding: 30px;
+  padding: 15px;
 
   background-color: $white;
   border-radius: 4px;
@@ -56,23 +58,48 @@
   box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.12), 0px 1px 2px rgba(0, 0, 0, 0.8),
     0px 3px 1px rgba(0, 0, 0, 0.1);
 
-  @media screen and (min-width: 1200px) {
+  @media screen and (min-width: $tablet) {
+    padding: 30px;
+  }
+
+  @media screen and (min-width: $desktop) {
     width: 800px;
+  }
+}
+
+%formTitle {
+  font-size: 20px;
+  color: $pink-accent;
+
+  @media screen and (min-width: $mobile) {
+    font-size: 24px;
+  }
+
+  @media screen and (min-width: $tablet) {
+    font-size: 30px;
+  }
+
+  @media screen and (min-width: $desktop) {
+    font-size: 36px;
   }
 }
 
 %label {
   display: block;
-  margin-bottom: 20px;
+  margin-bottom: 10px;
   line-height: 1.8;
   color: $green;
+
+  @media screen and (min-width: $tablet) {
+    margin-bottom: 20px;
+  }
 }
 
 %inputField {
   width: 100%;
 
   color: $main-text;
-  border: 1px solid rgba(33, 33, 33, 0.2);
+  border: 2px solid rgba(33, 33, 33, 0.2);
   border-radius: 4px;
   cursor: pointer;
 
@@ -81,5 +108,53 @@
   &:focus {
     outline: none;
     border: 2px solid $blue;
+  }
+}
+
+%formBtn {
+  font-size: 14px;
+  font-weight: 700;
+  text-transform: uppercase;
+
+  color: $white;
+  background-color: $green;
+  border-radius: 4px;
+
+  @media screen and (min-width: $mobile) {
+    font-size: 16px;
+  }
+
+  @media screen and (min-width: $tablet) {
+    font-size: 18px;
+  }
+
+  @media screen and (min-width: $desktop) {
+    font-size: 22px;
+  }
+
+  &:hover {
+    background-color: $green-hover;
+  }
+}
+
+%icon {
+  width: 16px;
+  height: 16px;
+
+  fill: currentColor;
+
+  @media screen and (min-width: $mobile) {
+    width: 20px;
+    height: 20px;
+  }
+
+  @media screen and (min-width: $tablet) {
+    width: 24px;
+    height: 24px;
+  }
+
+  @media screen and (min-width: $desktop) {
+    width: 30px;
+    height: 30px;
   }
 }

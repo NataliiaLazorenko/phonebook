@@ -11,12 +11,23 @@
   justify-content: center;
 }
 
-.text {
-  margin-right: 20px;
+.text,
+.linksListItem:not(:last-child) {
+  margin-right: 10px;
+
+  @media screen and (min-width: $tablet) {
+    margin-right: 15px;
+  }
 }
 
 .developerName {
   font-weight: 700;
+}
+
+.linksList {
+  @extend %list;
+
+  display: flex;
 }
 
 .developerLink {
@@ -26,18 +37,16 @@
   &:hover {
     color: $pink-accent;
   }
-
-  &:not(:last-child) {
-    margin-right: 20px;
-  }
-}
-
-.icon {
-  width: 20px;
-  height: 20px;
-  fill: currentColor;
 }
 
 .footerLogo {
-  margin-bottom: 20px;
+  margin-bottom: 10px;
+
+  @media screen and (min-width: $tablet) {
+    margin-bottom: 20px;
+  }
+}
+
+.footerIcon {
+  @extend %icon;
 }
