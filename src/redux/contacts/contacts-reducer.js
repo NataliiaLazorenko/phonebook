@@ -10,6 +10,8 @@ const items = createReducer([], {
   ],
   [contactsActions.deleteContactSuccess]: (state, { payload }) =>
     state.filter(({ id }) => id !== payload),
+  [contactsActions.updateContactSuccess]: (state, { payload }) =>
+    state.map(contact => (contact.id === payload.id ? payload : contact)),
 });
 
 const isLoading = createReducer(false, {
@@ -24,16 +26,22 @@ const isLoading = createReducer(false, {
   [contactsActions.deleteContactRequest]: () => true,
   [contactsActions.deleteContactSuccess]: () => false,
   [contactsActions.deleteContactError]: () => false,
+
+  [contactsActions.updateContactRequest]: () => true,
+  [contactsActions.updateContactSuccess]: () => false,
+  [contactsActions.updateContactError]: () => false,
 });
 
 const error = createReducer(null, {
   [contactsActions.fetchContactsError]: (_, { payload }) => payload,
   [contactsActions.addContactError]: (_, { payload }) => payload,
   [contactsActions.deleteContactError]: (_, { payload }) => payload,
+  [contactsActions.updateContactError]: (_, { payload }) => payload,
 
   [contactsActions.fetchContactsRequest]: () => null,
   [contactsActions.addContactRequest]: () => null,
   [contactsActions.deleteContactRequest]: () => null,
+  [contactsActions.updateContactRequest]: () => null,
 });
 
 const filter = createReducer('', {

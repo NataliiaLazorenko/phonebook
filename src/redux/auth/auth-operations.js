@@ -1,5 +1,6 @@
 import axios from 'axios';
 import authActions from './auth-actions';
+import { toast } from 'react-toastify';
 
 axios.defaults.baseURL = 'https://goit-phonebook-api.herokuapp.com';
 
@@ -23,6 +24,7 @@ const signup = user => async dispatch => {
     dispatch(authActions.signupSuccess(data));
   } catch (error) {
     dispatch(authActions.signupError(error.message));
+    toast.error('Invalid credentials');
   }
 };
 
@@ -36,6 +38,7 @@ const login = user => async dispatch => {
     dispatch(authActions.loginSuccess(data));
   } catch (error) {
     dispatch(authActions.loginError(error.message));
+    toast.error('Invalid credentials');
   }
 };
 
@@ -63,6 +66,7 @@ const getCurrentUser = () => async (dispatch, getState) => {
   token.set(persistedToken);
 
   dispatch(authActions.getCurrentUserRequest());
+
   try {
     const response = await axios.get('/users/current');
 

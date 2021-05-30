@@ -17,7 +17,7 @@ export default function Logo({ classes, showLogoText }) {
 
   return (
     <div className={logoClasses.join(' ')}>
-      <BookIcon className={styles.logoIcon} />
+      <BookIcon className={styles.logoIcon} aria-label="logo icon" />
 
       {shouldRenderText && (
         <p className={styles.logoText}>

@@ -5,15 +5,21 @@
   font-weight: 500;
 }
 
+.linksListItem:not(:last-child) {
+  margin-right: 10px;
+}
+
+.linksList {
+  @extend %list;
+
+  display: flex;
+}
+
+.editContactBtn,
 .deleteContactBtn {
-  @extend %button;
+  padding: 5px;
+}
 
-  padding: 5px 30px;
-  color: $green;
-  background-color: $white;
-
-  &:focus,
-  &:hover {
-    background-color: $light-green;
-  }
+.contactsIcon {
+  @extend %icon;
 }

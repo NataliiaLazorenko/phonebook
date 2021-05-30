@@ -1,36 +1,77 @@
 @import '../../styles/shared.scss';
 
+.warningMessage {
+  text-align: center;
+  font-size: 16px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  color: $warning-message-color;
+
+  @media screen and (min-width: $mobile) {
+    font-size: 20px;
+  }
+
+  @media screen and (min-width: $tablet) {
+    font-size: 24px;
+  }
+
+  @media screen and (min-width: $desktop) {
+    font-size: 30px;
+  }
+}
+
 .contactsList {
   @extend %list;
+
+  padding: 10px;
+  background-color: $bcg-dark-theme-color;
+  border-radius: 4px;
+  box-shadow: $box-shadow;
 
   @media screen and (min-width: $desktop) {
     display: flex;
     flex-wrap: wrap;
+    padding: 0;
+    margin: -10px;
   }
 }
 
 .listItem {
+  position: relative;
   display: flex;
   justify-content: space-between;
-  align-items: baseline;
+  align-items: center;
+  text-align: left;
 
-  @media screen and (min-width: $desktop) {
-    width: calc((100% - 60px) / 2);
+  padding: 6px;
+  font-size: 12px;
+
+  background-color: $bcg-light-theme-color;
+  border-radius: 4px;
+
+  @media screen and (min-width: $mobile) {
+    font-size: 14px;
   }
-}
 
-.listItem:not(:last-child) {
-  margin-bottom: 10px;
-}
-
-.listItem:nth-child(odd) {
-  @media screen and (min-width: $desktop) {
-    margin-right: 60px;
+  @media screen and (min-width: $tablet) {
+    font-size: 18px;
   }
-}
 
-.listItem:nth-last-child(-n + 2) {
   @media screen and (min-width: $desktop) {
-    margin-bottom: 0px;
+    width: calc((100% - 40px) / 2);
+    min-height: 58px;
+    margin: 10px;
+    font-size: 20px;
+  }
+
+  &:not(:last-child) {
+    @media screen and (max-width: $desktop - 1px) {
+      margin-bottom: 10px;
+    }
+  }
+
+  &:focus,
+  &:hover {
+    box-shadow: $box-shadow;
   }
 }

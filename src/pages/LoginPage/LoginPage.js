@@ -4,6 +4,7 @@ import { authOperations } from '../../redux/auth';
 import Container from '../../components/Container';
 import AuthForm from '../../components/AuthForm';
 import routes from '../../routes';
+import styles from './LoginPage.module.scss';
 
 export default function LoginPage() {
   const dispatch = useDispatch();
@@ -12,7 +13,7 @@ export default function LoginPage() {
   ]);
 
   return (
-    <section className="section">
+    <section className={styles.loginSection}>
       <Container>
         <AuthForm
           shouldRenderName={false}

@@ -1,14 +1,10 @@
 import React, { useState, useCallback } from 'react';
 import { Link } from 'react-router-dom';
-import {
-  TextField,
-  IconButton,
-  InputAdornment,
-  Button,
-} from '@material-ui/core';
+import { TextField, IconButton, InputAdornment } from '@material-ui/core';
 import { Visibility, VisibilityOff } from '@material-ui/icons';
 import HttpsIcon from '@material-ui/icons/Https';
 import { withStyles } from '@material-ui/core/styles';
+import Button from '../Button';
 import styles from './AuthForm.module.scss';
 
 const ValidationTextField = withStyles({
@@ -83,9 +79,13 @@ export default function AuthForm({
   }, []);
 
   return (
-    <form onSubmit={handleSubmit} className={styles.authForm} noValidate>
+    <form
+      onSubmit={handleSubmit}
+      className={styles.authForm}
+      autoComplete="off"
+    >
       <HttpsIcon className={styles.lockIcon} />
-      <h2 className={styles.authFormTitle}>{text}</h2>
+      <h2>{text}</h2>
       {shouldRenderName && (
         <ValidationTextField
           onChange={handleChange}
@@ -142,15 +142,11 @@ export default function AuthForm({
         }}
       />
       <Button
-        className={styles.authFormBtn}
-        variant="contained"
-        color="primary"
         type="submit"
-        fullWidth
-        size="large"
-      >
-        {text}
-      </Button>
+        value="login"
+        aria-label="login"
+        classes={styles.authFormBtn}
+      />
       <Link to={redirectPath} className={styles.formLink}>
         {redirectLinkText}
       </Link>

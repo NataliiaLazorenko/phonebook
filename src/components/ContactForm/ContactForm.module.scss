@@ -1,59 +1,14 @@
 @import '../../styles/shared.scss';
 
-.addContactForm {
+.contactForm {
   @extend %form;
-
-  display: flex;
-  flex-direction: column;
-  text-align: left;
-  margin-left: auto;
-  margin-right: auto;
-  margin-bottom: 50px;
 }
 
-.contactFormTitle {
-  @extend %formTitle;
-
-  text-align: center;
-}
-
-.contactFormLabel {
+.formLabel {
   @extend %label;
-
-  font-size: 16px;
+  text-align: left;
 }
 
-.contactFormInput {
+.formInput {
   @extend %inputField;
-
-  padding: 17px 14px;
-}
-
-.contactFormBtn {
-  @extend %formBtn;
-
-  padding: 12px;
-
-  @media screen and (min-width: $mobile) {
-    padding: 13px;
-  }
-
-  @media screen and (min-width: $tablet) {
-    padding: 16px;
-  }
-
-  @media screen and (min-width: $desktop) {
-    padding: 17px;
-  }
-}
-
-.contactFormBtn[disabled] {
-  border: 1px solid $light-green;
-
-  background-color: $light-green;
-
-  &:focus,
-  &:hover {
-    box-shadow: none;
-  }
 }

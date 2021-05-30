@@ -19,19 +19,8 @@
 }
 
 .btn {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
   padding: 0;
-  border: none;
-  color: $green;
-  background-color: $white;
-  cursor: pointer;
-
-  &:focus,
-  &:hover {
-    color: $pink-accent;
-  }
+  background-color: $bcg-light-theme-color;
 }
 
 .logoutIcon {

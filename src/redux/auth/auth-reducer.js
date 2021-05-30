@@ -49,11 +49,13 @@ const isLoading = createReducer(false, {
   [authActions.getCurrentUserError]: () => false,
 });
 
+const setError = (_, { payload }) => payload;
+
 const error = createReducer(null, {
-  [authActions.signupError]: (_, { payload }) => payload,
-  [authActions.loginError]: (_, { payload }) => payload,
-  [authActions.logoutError]: (_, { payload }) => payload,
-  [authActions.getCurrentUserError]: (_, { payload }) => payload,
+  [authActions.signupError]: setError,
+  [authActions.loginError]: setError,
+  [authActions.logoutError]: setError,
+  [authActions.getCurrentUserError]: setError,
 
   [authActions.signupRequest]: () => null,
   [authActions.loginRequest]: () => null,

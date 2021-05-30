@@ -9,8 +9,8 @@
 
     padding: 3px;
 
-    color: $white;
-    background-color: $pink-accent;
+    color: $text-dark-theme-color;
+    background-color: $accent-second-color;
     border-radius: 50%;
   }
 
@@ -22,29 +22,36 @@
     }
   }
 
+  input {
+    padding: 16px;
+    color: $text-light-theme-color;
+
+    @media screen and (min-width: $tablet) {
+      padding: 18px;
+    }
+  }
+
+  label {
+    font-size: 14px;
+
+    @media screen and (min-width: $tablet) {
+      font-size: 16px;
+    }
+  }
+
   .passwordIcon svg {
     @extend %icon;
   }
 
   .authFormBtn {
-    @extend %formBtn;
-
-    padding-top: 10px;
-    padding-bottom: 10px;
     margin-bottom: 10px;
 
     @media screen and (min-width: $tablet) {
-      padding-top: 12px;
-      padding-bottom: 12px;
       margin-bottom: 30px;
     }
   }
-}
 
-.authFormTitle {
-  @extend %formTitle;
-}
-
-.formLink {
-  @extend %link;
+  .formLink {
+    @extend %link;
+  }
 }

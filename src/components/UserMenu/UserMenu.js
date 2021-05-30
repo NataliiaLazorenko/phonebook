@@ -1,7 +1,7 @@
 import React, { useCallback } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { authSelectors, authOperations } from '../../redux/auth';
-// import ExitToAppIcon from '@material-ui/icons/ExitToApp';
+import IconButton from '../IconButton';
 import { ReactComponent as LogoutIcon } from '../../icons/logout.svg';
 import styles from './UserMenu.module.scss';
 
@@ -16,10 +16,9 @@ export default function UserMenu() {
   return (
     <div className={styles.userMenuContainer}>
       <p className={styles.userEmail}>{email}</p>
-      <button type="button" onClick={onLogout} className={styles.btn}>
-        {/* <ExitToAppIcon /> */}
+      <IconButton onClick={onLogout} classes={styles.btn} aria-label="logout">
         <LogoutIcon className={styles.logoutIcon} />
-      </button>
+      </IconButton>
     </div>
   );
 }

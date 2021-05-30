@@ -1,0 +1,7 @@
+@import '../../styles/shared.scss';
+
+.sighUpSection {
+  @extend %section;
+
+  background-color: $bcg-dark-theme-color;
+}

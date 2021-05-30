@@ -1,12 +1,14 @@
 import React, { useState, useCallback } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
+import { toast } from 'react-toastify';
 import { contactsSelectors, contactsOperations } from '../../redux/contacts';
+import Button from '../Button';
 import styles from './ContactForm.module.scss';
 
 export default function ContactForm() {
   const [name, setName] = useState('');
   const [number, setNumber] = useState('');
-  const items = useSelector(contactsSelectors.getAllContacts);
+  const contacts = useSelector(contactsSelectors.getAllContacts);
 
   const dispatch = useDispatch();
 
@@ -31,23 +33,27 @@ export default function ContactForm() {
     event => {
       event.preventDefault();
 
-      if (name === '') {
+      const isData = name !== '' && number !== '';
+
+      if (!isData) {
         return;
       }
 
-      const isInContacts = items.find(
-        item => item.name.toLowerCase() === name.toLowerCase(),
+      const isInContacts = contacts.find(
+        contact => contact.name.toLowerCase() === name.toLowerCase(),
       );
 
       if (isInContacts) {
-        alert(`${name} is already in contacts`);
-      } else {
-        dispatch(contactsOperations.addContact({ name, number }));
+        toast.warning(`The contact ${name} already exists`);
+
+        return;
       }
+
+      dispatch(contactsOperations.addContact({ name, number }));
 
       reset();
     },
-    [dispatch, items, name, number],
+    [dispatch, contacts, name, number],
   );
 
   const reset = () => {
@@ -56,37 +62,33 @@ export default function ContactForm() {
   };
 
   return (
-    <form onSubmit={handleSubmit} className={styles.addContactForm}>
-      <h2 className={styles.contactFormTitle}>New contact</h2>
-      <label className={styles.contactFormLabel}>
-        Name
+    <form onSubmit={handleSubmit} className={styles.contactForm}>
+      <h2>New contact</h2>
+      <label className={styles.formLabel}>
+        Name *
         <input
           type="text"
           placeholder="Enter name"
           name="name"
           value={name}
           onChange={handleChange}
-          className={styles.contactFormInput}
+          className={styles.formInput}
+          required
         />
       </label>
-      <label className={styles.contactFormLabel}>
-        Phone number
+      <label className={styles.formLabel}>
+        Phone number *
         <input
           type="tel"
           placeholder="Enter phone number"
           name="number"
           value={number}
           onChange={handleChange}
-          className={styles.contactFormInput}
+          className={styles.formInput}
+          required
         />
       </label>
-      <button
-        type="submit"
-        className={`button ${styles.contactFormBtn}`}
-        disabled={name === '' || number === '' ? true : false}
-      >
-        Add contact
-      </button>
+      <Button type="submit" value="Add contact" aria-label="add contact" />
     </form>
   );
 }

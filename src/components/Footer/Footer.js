@@ -24,7 +24,7 @@ export default function Footer() {
               <a
                 href="https://github.com/NataliiaLazorenko"
                 target="_blank"
-                aria-label="Link to GitHub"
+                aria-label="link to GitHub"
                 rel="noreferrer"
                 className={styles.developerLink}
               >
@@ -33,9 +33,9 @@ export default function Footer() {
             </li>
             <li className={styles.linksListItem}>
               <a
-                href="https://www.linkedin.com/in/nataliia-lazorenko-6a5b22152/"
+                href="https://www.linkedin.com/in/lazorenko-nataliia/"
                 target="_blank"
-                aria-label="Link to LinkedIn"
+                aria-label="link to LinkedIn"
                 rel="noreferrer"
                 className={styles.developerLink}
               >
@@ -46,7 +46,7 @@ export default function Footer() {
               <a
                 href="mailto:natalystruk@gmail.com"
                 target="blank"
-                aria-label="Link to email"
+                aria-label="link to email"
                 className={styles.developerLink}
               >
                 {/* <EmailOutlinedIcon htmlColor="green" fontSize="meddium" /> */}

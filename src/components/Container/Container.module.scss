@@ -3,8 +3,7 @@
 .container {
   padding-left: 10px;
   padding-right: 10px;
-  margin-right: auto;
-  margin-left: auto;
+  margin: 0 auto;
   text-align: center;
 
   @media screen and (min-width: $mobile) {

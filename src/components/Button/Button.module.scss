@@ -1,0 +1,38 @@
+@import '../../styles/shared.scss';
+
+.btn {
+  display: inline-block;
+  width: 100%;
+  padding: 12px;
+
+  font-size: inherit;
+  font-weight: 700;
+  text-transform: uppercase;
+
+  color: $text-dark-theme-color;
+  background-color: $accent-color;
+  border: 1px solid transparent;
+  border-radius: 4px;
+  cursor: pointer;
+
+  transition: background-color $transition-duration $timing-function,
+    box-shadow $transition-duration $timing-function;
+
+  @media screen and (min-width: $mobile) {
+    padding: 14px;
+  }
+
+  @media screen and (min-width: $tablet) {
+    padding: 16px;
+  }
+
+  @media screen and (min-width: $desktop) {
+    padding: 18px;
+  }
+
+  &:hover {
+    background-color: $btn-accent-color;
+    outline: transparent;
+    box-shadow: $box-shadow;
+  }
+}

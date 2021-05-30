@@ -5,7 +5,8 @@
   margin-left: auto;
   padding-top: 120px;
   padding-bottom: 120px;
-  color: $white;
+
+  color: $text-dark-theme-color;
   background-image: linear-gradient(
       rgba(47, 48, 58, 0.8),
       rgba(47, 48, 58, 0.8)
@@ -31,7 +32,6 @@
   font-size: 16px;
   letter-spacing: 0.06em;
   text-transform: uppercase;
-  color: $white;
 
   @media screen and (min-width: $mobile) {
     font-size: 22px;
@@ -50,6 +50,11 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  margin-top: 10px;
+
+  @media screen and (min-width: $tablet) {
+    margin-top: 30px;
+  }
 }
 
 .text {
@@ -62,6 +67,6 @@
 
   &:focus,
   &:hover {
-    color: $pink-accent;
+    color: $accent-second-color;
   }
 }

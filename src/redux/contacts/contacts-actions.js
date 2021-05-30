@@ -12,6 +12,10 @@ const deleteContactRequest = createAction('contacts/deleteContactRequest');
 const deleteContactSuccess = createAction('contacts/deleteContactSuccess');
 const deleteContactError = createAction('contacts/deleteContactError');
 
+const updateContactRequest = createAction('contacts/updateContactRequest');
+const updateContactSuccess = createAction('contacts/updateContactSuccess');
+const updateContactError = createAction('contacts/updateContactError');
+
 const filterContacts = createAction('contacts/filter');
 
 const contactsActions = {
@@ -24,6 +28,9 @@ const contactsActions = {
   deleteContactRequest,
   deleteContactSuccess,
   deleteContactError,
+  updateContactRequest,
+  updateContactSuccess,
+  updateContactError,
   filterContacts,
 };
 

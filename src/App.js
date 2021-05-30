@@ -1,6 +1,7 @@
 import React, { useEffect, Suspense, lazy } from 'react';
 import { useDispatch } from 'react-redux';
 import { Switch, Redirect } from 'react-router-dom';
+import { ToastContainer } from 'react-toastify';
 import { authOperations } from './redux/auth';
 import AppBar from './components/AppBar';
 import Spinner from './components/Spinner';
@@ -8,6 +9,7 @@ import PrivateRoute from './components/PrivateRoute';
 import PublicRoute from './components/PublicRoute';
 import Footer from './components/Footer';
 import routes from './routes';
+import 'react-toastify/dist/ReactToastify.css';
 
 const HomePage = lazy(() =>
   import('./pages/HomePage' /* webpackChunkName: 'home-page' */),
@@ -35,7 +37,6 @@ export default function App() {
   return (
     <>
       <AppBar />
-
       <Suspense fallback={<Spinner />}>
         <Switch>
           <PublicRoute exact path={routes.home}>
@@ -67,6 +68,17 @@ export default function App() {
       </Suspense>
 
       <Footer />
+      <ToastContainer
+        position="top-right"
+        autoClose={2000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+      />
     </>
   );
 }

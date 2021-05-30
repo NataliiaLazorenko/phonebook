@@ -1,10 +1,33 @@
 @import '../../styles/shared.scss';
 
-.errorMessage {
+.newContactSection {
+  @extend %section;
+
+  background-color: $bcg-dark-theme-color;
+}
+
+.contactsSection {
+  @extend %section;
+}
+
+.errorMessage,
+.warningMessage {
   text-align: center;
   margin-bottom: 30px;
-  font-size: 30px;
+  font-size: 16px;
   font-weight: 700;
   letter-spacing: 2px;
-  color: $blue;
+  color: $warning-message-color;
+
+  @media screen and (min-width: $mobile) {
+    font-size: 20px;
+  }
+
+  @media screen and (min-width: $tablet) {
+    font-size: 24px;
+  }
+
+  @media screen and (min-width: $desktop) {
+    font-size: 30px;
+  }
 }

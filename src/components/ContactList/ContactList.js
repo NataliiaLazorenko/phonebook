@@ -5,7 +5,7 @@ import ContactListItem from '../ContactListItem';
 import styles from './ContactList.module.scss';
 
 export default function ContactList() {
-  const contacts = useSelector(contactsSelectors.getContactsToShow);
+  const contactsToShow = useSelector(contactsSelectors.getContactsToShow);
 
   const dispatch = useDispatch();
 
@@ -15,16 +15,23 @@ export default function ContactList() {
   );
 
   return (
-    <ul className={styles.contactsList}>
-      {contacts.map(({ id, name, number }) => (
-        <li className={styles.listItem} key={id}>
-          <ContactListItem
-            name={name}
-            number={number}
-            onDeleteContact={() => onDeleteContact(id)}
-          />
-        </li>
-      ))}
-    </ul>
+    <>
+      {contactsToShow.length === 0 ? (
+        <p className={styles.warningMessage}>There are no contacts that fit</p>
+      ) : (
+        <ul className={styles.contactsList}>
+          {contactsToShow.map(({ id, name, number }) => (
+            <li className={styles.listItem} key={id}>
+              <ContactListItem
+                id={id}
+                name={name}
+                number={number}
+                onDeleteContact={() => onDeleteContact(id)}
+              />
+            </li>
+          ))}
+        </ul>
+      )}
+    </>
   );
 }

@@ -4,6 +4,7 @@ import Container from '../../components/Container';
 import { authOperations } from '../../redux/auth';
 import AuthForm from '../../components/AuthForm';
 import routes from '../../routes';
+import styles from './RegisterPage.module.scss';
 
 export default function RegisterPage() {
   const dispatch = useDispatch();
@@ -12,7 +13,7 @@ export default function RegisterPage() {
   ]);
 
   return (
-    <section className="section">
+    <section className={styles.sighUpSection}>
       <Container>
         <AuthForm
           shouldRenderName

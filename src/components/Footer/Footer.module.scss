@@ -32,11 +32,6 @@
 
 .developerLink {
   @extend %link;
-
-  &:focus,
-  &:hover {
-    color: $pink-accent;
-  }
 }
 
 .footerLogo {

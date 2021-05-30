@@ -20,20 +20,30 @@ export default function ContactsPage() {
   }, [dispatch]);
 
   return (
-    <section className="section">
-      <Container>
-        <ContactForm />
+    <>
+      <section className={styles.newContactSection}>
+        <Container>
+          <ContactForm />
+        </Container>
+      </section>
 
-        <h2>Contacts</h2>
-        {contacts.length > 1 && <Filter />}
+      <section className={styles.contactsSection}>
+        <Container>
+          <h2>Contacts</h2>
+          {contacts.length > 1 && <Filter />}
 
-        {isLoading && <Spinner />}
-        {error && <p className={styles.errorMessage}>{error}</p>}
-        <ContactList />
-        {!error && contacts.length === 0 && (
-          <p className={styles.errorMessage}>You don't have any contacts yet</p>
-        )}
-      </Container>
-    </section>
+          {isLoading && <Spinner />}
+          {error && <p className={styles.errorMessage}>{error}</p>}
+
+          {!error && !isLoading && contacts.length === 0 && (
+            <p className={styles.warningMessage}>
+              You don't have any contacts yet
+            </p>
+          )}
+
+          {contacts.length !== 0 && <ContactList />}
+        </Container>
+      </section>
+    </>
   );
 }

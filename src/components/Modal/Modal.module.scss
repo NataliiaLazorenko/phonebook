@@ -1,0 +1,33 @@
+@import '../../styles/shared.scss';
+
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  width: 100vw;
+  height: 100vh;
+
+  background-color: rgba(0, 0, 0, 0.8);
+}
+
+.modalContent {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+
+  max-width: 480px;
+  width: 100%;
+  padding: 10px;
+
+  border-radius: 4px;
+
+  @media screen and (min-width: $tablet) {
+    max-width: 768px;
+  }
+}
