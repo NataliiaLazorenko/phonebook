@@ -16,7 +16,6 @@ export default function LoginPage() {
     <section className={styles.loginSection}>
       <Container>
         <AuthForm
-          shouldRenderName={false}
           text="Log in"
           redirectLinkText="Don't have an account? Sign up"
           redirectPath={routes.register}

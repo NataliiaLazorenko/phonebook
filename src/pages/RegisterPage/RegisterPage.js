@@ -16,7 +16,7 @@ export default function RegisterPage() {
     <section className={styles.sighUpSection}>
       <Container>
         <AuthForm
-          shouldRenderName
+          nameField
           text="Sign up"
           redirectLinkText="Already have an account? Log in"
           redirectPath={routes.login}

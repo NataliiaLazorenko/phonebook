@@ -1,4 +1,5 @@
 import React, { useState, useCallback } from 'react';
+import PropTypes from 'prop-types';
 import { useSelector, useDispatch } from 'react-redux';
 import { toast } from 'react-toastify';
 import { contactsSelectors, contactsOperations } from '../../redux/contacts';
@@ -109,3 +110,10 @@ export default function UpdateContactForm({ id, name, number, toggleModal }) {
     </form>
   );
 }
+
+UpdateContactForm.propTypes = {
+  id: PropTypes.string.isRequired,
+  name: PropTypes.string.isRequired,
+  number: PropTypes.string.isRequired,
+  toggleModal: PropTypes.func.isRequired,
+};

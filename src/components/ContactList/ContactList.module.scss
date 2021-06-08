@@ -49,6 +49,8 @@
   background-color: $bcg-light-theme-color;
   border-radius: 4px;
 
+  transition: box-shadow $transition-duration $timing-function;
+
   @media screen and (min-width: $mobile) {
     font-size: 14px;
   }

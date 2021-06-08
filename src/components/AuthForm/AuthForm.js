@@ -1,4 +1,5 @@
 import React, { useState, useCallback } from 'react';
+import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import { TextField, IconButton, InputAdornment } from '@material-ui/core';
 import { Visibility, VisibilityOff } from '@material-ui/icons';
@@ -25,7 +26,7 @@ const ValidationTextField = withStyles({
 })(TextField);
 
 export default function AuthForm({
-  shouldRenderName,
+  nameField,
   text,
   redirectLinkText,
   redirectPath,
@@ -86,12 +87,12 @@ export default function AuthForm({
     >
       <HttpsIcon className={styles.lockIcon} />
       <h2>{text}</h2>
-      {shouldRenderName && (
+      {nameField && (
         <ValidationTextField
           onChange={handleChange}
           className={styles.inputField}
-          autoFocus={shouldRenderName ? true : false}
-          id="validation-outlined-input"
+          autoFocus={nameField ? true : false}
+          id="name-input"
           type="name"
           name="name"
           value={name}
@@ -104,13 +105,14 @@ export default function AuthForm({
       <ValidationTextField
         onChange={handleChange}
         className={styles.inputField}
-        autoFocus={shouldRenderName ? false : true}
-        id="validation-outlined-input"
+        autoFocus={nameField ? false : true}
+        id="email-input"
         type="email"
         name="email"
         value={email}
         label="Email adress"
         variant="outlined"
+        autoComplete="user-name"
         required
         fullWidth
       />
@@ -118,12 +120,13 @@ export default function AuthForm({
       <ValidationTextField
         onChange={handleChange}
         className={styles.inputField}
-        id="validation-outlined-input"
+        id="password-input"
         type={showPassword ? 'text' : 'password'}
         name="password"
         value={password}
         label="Password"
         variant="outlined"
+        autoComplete="password"
         required
         fullWidth
         InputProps={{
@@ -153,3 +156,15 @@ export default function AuthForm({
     </form>
   );
 }
+
+AuthForm.defaultProps = {
+  nameField: false,
+};
+
+AuthForm.propTypes = {
+  nameField: PropTypes.bool,
+  text: PropTypes.string.isRequired,
+  redirectLinkText: PropTypes.string.isRequired,
+  redirectPath: PropTypes.string.isRequired,
+  handleAuthenticate: PropTypes.func.isRequired,
+};

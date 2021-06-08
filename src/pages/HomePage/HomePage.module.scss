@@ -65,6 +65,8 @@
   color: inherit;
   font-weight: 700;
 
+  transition: color $transition-duration $timing-function;
+
   &:focus,
   &:hover {
     color: $accent-second-color;

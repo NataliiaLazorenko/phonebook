@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { useMediaQuery } from '@material-ui/core';
-// import ImportContactsIcon from '@material-ui/icons/ImportContacts';
 import { ReactComponent as BookIcon } from '../../icons/book.svg';
 import styles from './Logo.module.scss';
 
