@@ -146,8 +146,8 @@ export default function AuthForm({
       />
       <Button
         type="submit"
-        value="login"
-        aria-label="login"
+        value={text}
+        aria-label={text}
         classes={styles.authFormBtn}
       />
       <Link to={redirectPath} className={styles.formLink}>
