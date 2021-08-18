@@ -1,7 +1,3 @@
-import React from 'react';
-// import EmailOutlinedIcon from '@material-ui/icons/EmailOutlined';
-// import LinkedInIcon from '@material-ui/icons/LinkedIn';
-// import GitHubIcon from '@material-ui/icons/GitHub';
 import { ReactComponent as LinkedInIcon } from '../../icons/linkedin.svg';
 import { ReactComponent as GitHubIcon } from '../../icons/github.svg';
 import { ReactComponent as EmailIcon } from '../../icons/email.svg';
@@ -49,7 +45,6 @@ export default function Footer() {
                 aria-label="link to email"
                 className={styles.developerLink}
               >
-                {/* <EmailOutlinedIcon htmlColor="green" fontSize="meddium" /> */}
                 <EmailIcon className={styles.footerIcon} />
               </a>
             </li>

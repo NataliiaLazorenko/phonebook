@@ -1,4 +1,4 @@
-import React, { useCallback } from 'react';
+import { useCallback } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { contactsActions, contactsSelectors } from '../../redux/contacts';
 import styles from './Filter.module.scss';

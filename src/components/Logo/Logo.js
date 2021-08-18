@@ -1,4 +1,3 @@
-import React from 'react';
 import PropTypes from 'prop-types';
 import { useMediaQuery } from '@material-ui/core';
 import { ReactComponent as BookIcon } from '../../icons/book.svg';

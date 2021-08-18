@@ -1,7 +1,7 @@
-import React, { useCallback } from 'react';
+import { useCallback } from 'react';
 import { useDispatch } from 'react-redux';
-import Container from '../../components/Container';
 import { authOperations } from '../../redux/auth';
+import Container from '../../components/Container';
 import AuthForm from '../../components/AuthForm';
 import routes from '../../routes';
 import styles from './RegisterPage.module.scss';

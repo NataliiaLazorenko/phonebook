@@ -1,4 +1,4 @@
-import React, { useState, useCallback } from 'react';
+import { useState, useCallback } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { toast } from 'react-toastify';
 import { contactsSelectors, contactsOperations } from '../../redux/contacts';
@@ -79,7 +79,7 @@ export default function ContactForm() {
       <label className={styles.formLabel}>
         Phone number *
         <input
-          type="tel"
+          type="number"
           placeholder="Enter phone number"
           name="number"
           value={number}
